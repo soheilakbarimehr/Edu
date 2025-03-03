@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Navbar } from './components/Navbar';
 import { AuthModal } from './components/AuthModal';
 import { Home } from './pages/Home';
@@ -29,6 +30,18 @@ export function App() {
 
   return (
     <Router>
+      <Helmet>
+        <title>آکادمی آموزش | پلتفرم آموزش آنلاین</title>
+        <meta name="description" content="آکادمی آموزش با هدف ارائه آموزش‌های با کیفیت در حوزه برنامه‌نویسی و فناوری اطلاعات" />
+        <meta name="keywords" content="آموزش برنامه نویسی, دوره آنلاین, آموزش آنلاین, برنامه نویسی" />
+        <meta property="og:title" content="آکادمی آموزش | پلتفرم آموزش آنلاین" />
+        <meta property="og:description" content="آکادمی آموزش با هدف ارائه آموزش‌های با کیفیت در حوزه برنامه‌نویسی و فناوری اطلاعات" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://academy-example.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta charSet="utf-8" />
+        <html lang="fa" dir="rtl" />
+      </Helmet>
       <div className="min-h-screen bg-background text-foreground">
         <Navbar onAuthClick={() => setIsAuthModalOpen(true)} />
         <main className="pt-16">

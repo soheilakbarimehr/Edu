@@ -24,12 +24,35 @@
 
 @font-face {
   font-family: 'Vazirmatn';
-  src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Regular.woff2') format('woff2');
+  src: url('/fonts/vazirmatn-regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 body {
   font-family: 'Vazirmatn', system-ui, sans-serif;
   direction: rtl;
+}
+
+/* Smooth section dividers */
+.section-divider {
+  border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+}
+
+.dark .section-divider {
+  border-bottom: 1px solid rgba(55, 65, 81, 0.5);
+}
+
+/* Footer styles */
+footer {
+  @apply bg-white dark:bg-gray-900;
+}
+
+footer.light {
+  @apply bg-white text-gray-600;
+}
+
+footer.dark {
+  @apply bg-gray-900 text-gray-300;
 }

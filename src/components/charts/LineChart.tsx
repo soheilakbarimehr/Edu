@@ -25,9 +25,10 @@ interface LineChartProps {
   data: number[];
   labels: string[];
   title: string;
+  changes?: number[];
 }
 
-export function LineChart({ data, labels, title }: LineChartProps) {
+export function LineChart({ data, labels, title, changes }: LineChartProps) {
   const { isDark } = useThemeStore();
   
   const chartData = {
@@ -39,6 +40,19 @@ export function LineChart({ data, labels, title }: LineChartProps) {
         borderColor: '#3b82f6',
         backgroundColor: 'rgba(59, 130, 246, 0.5)',
         tension: 0.4,
+        pointBackgroundColor: data.map((_, index) => {
+          if (changes && changes[index] < 0) {
+            return '#ef4444'; // Red for negative
+          }
+          return '#3b82f6'; // Blue for positive
+        }),
+        pointBorderColor: data.map((_, index) => {
+          if (changes && changes[index] < 0) {
+            return '#ef4444'; // Red for negative
+          }
+          return '#3b82f6'; // Blue for positive
+        }),
+        pointRadius: 5,
       },
     ],
   };
@@ -52,6 +66,19 @@ export function LineChart({ data, labels, title }: LineChartProps) {
           color: isDark ? '#fff' : '#000',
         },
       },
+      tooltip: {
+        callbacks: {
+          afterLabel: function(context: any) {
+            const index = context.dataIndex;
+            if (changes && changes[index] !== undefined) {
+              const change = changes[index];
+              const sign = change >= 0 ? '+' : '';
+              return `تغییر: ${sign}${change}٪`;
+            }
+            return '';
+          }
+        }
+      }
     },
     scales: {
       y: {

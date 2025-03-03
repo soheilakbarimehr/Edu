@@ -23,9 +23,10 @@ interface BarChartProps {
   data: number[];
   labels: string[];
   title: string;
+  changes?: number[];
 }
 
-export function BarChart({ data, labels, title }: BarChartProps) {
+export function BarChart({ data, labels, title, changes }: BarChartProps) {
   const { isDark } = useThemeStore();
 
   const chartData = {
@@ -34,8 +35,18 @@ export function BarChart({ data, labels, title }: BarChartProps) {
       {
         label: title,
         data,
-        backgroundColor: 'rgba(59, 130, 246, 0.5)',
-        borderColor: '#3b82f6',
+        backgroundColor: data.map((_, index) => {
+          if (changes && changes[index] < 0) {
+            return 'rgba(239, 68, 68, 0.5)'; // Red for negative
+          }
+          return 'rgba(59, 130, 246, 0.5)'; // Blue for positive
+        }),
+        borderColor: data.map((_, index) => {
+          if (changes && changes[index] < 0) {
+            return '#ef4444'; // Red for negative
+          }
+          return '#3b82f6'; // Blue for positive
+        }),
         borderWidth: 1,
       },
     ],
@@ -50,6 +61,19 @@ export function BarChart({ data, labels, title }: BarChartProps) {
           color: isDark ? '#fff' : '#000',
         },
       },
+      tooltip: {
+        callbacks: {
+          afterLabel: function(context: any) {
+            const index = context.dataIndex;
+            if (changes && changes[index] !== undefined) {
+              const change = changes[index];
+              const sign = change >= 0 ? '+' : '';
+              return `تغییر: ${sign}${change}٪`;
+            }
+            return '';
+          }
+        }
+      }
     },
     scales: {
       y: {

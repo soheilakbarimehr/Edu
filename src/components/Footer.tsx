@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Instagram, Linkedin, Youtube, Mail, Phone, MapPin } from 'lucide-react';
+import { useThemeStore } from '../store/theme';
 
 export function Footer() {
+  const { isDark } = useThemeStore();
+  
   return (
-    <footer className="bg-white dark:bg-gray-900 text-gray-600 dark:text-gray-300">
+    <footer className={isDark ? 'dark' : 'light'}>
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

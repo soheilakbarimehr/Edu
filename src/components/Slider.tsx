@@ -4,19 +4,19 @@ import { ChevronRight, ChevronLeft } from 'lucide-react';
 const slides = [
   {
     id: 1,
-    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3',
+    image: '/images/slider/slide1.jpg',
     title: 'دوره‌های برنامه‌نویسی پیشرفته',
     description: 'یادگیری برنامه‌نویسی با بهترین اساتید'
   },
   {
     id: 2,
-    image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655',
+    image: '/images/slider/slide2.jpg',
     title: 'آزمون‌های آنلاین تخصصی',
     description: 'آماده‌سازی برای موفقیت در بازار کار'
   },
   {
     id: 3,
-    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4',
+    image: '/images/slider/slide3.jpg',
     title: 'محصولات آموزشی دیجیتال',
     description: 'دسترسی به بهترین منابع آموزشی'
   }
